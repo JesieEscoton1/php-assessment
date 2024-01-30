@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajax Uppercase Example</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<h2>Enter a string to convert to uppercase:</h2>
+<input type="text" id="input_data">
+<button onclick="convertToUppercase()">Convert to Uppercase</button>
+<div id="result"></div>
+
+<script>
+function convertToUppercase() {
+    var input_data = document.getElementById("input_data").value;
+
+    $.ajax({
+        type: "POST",
+        url: "uppercase.php",
+        data: { input_data: input_data },
+        success: function(response) {
+            document.getElementById("result").innerHTML = "Uppercase String: " + response;
+        },
+        error: function(xhr, status, error) {
+            console.error("Error:", error);
+        }
+    });
+}
+</script>
+
+</body>
+</html>
